@@ -16,6 +16,7 @@ export const LeftSideWrap = styled.div`
 export const RightSideWrap = styled.div`
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   gap: 20px;
 `;
 

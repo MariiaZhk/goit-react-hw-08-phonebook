@@ -19,7 +19,6 @@ export const NavWrap = styled.div`
   padding-right: 25px;
   display: flex;
   justify-content: space-between;
-  gap: 80px;
 `;
 
 export const LogoWrap = styled.div`

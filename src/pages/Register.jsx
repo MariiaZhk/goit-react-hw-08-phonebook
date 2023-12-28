@@ -9,12 +9,10 @@ import {
   Input,
   LinkText,
 } from './Pages.styled';
-import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 export const Register = () => {
   const { register, handleSubmit } = useForm();
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const submit = newUser => {
@@ -22,7 +20,6 @@ export const Register = () => {
     dispatch(registerThunk(newUser))
       .unwrap()
       .then(res => {
-        navigate('/contacts');
         toast.success(`Welcome, ${res.user.name}`);
       })
       .catch(error => {

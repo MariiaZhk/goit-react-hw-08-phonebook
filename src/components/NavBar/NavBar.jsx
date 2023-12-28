@@ -14,7 +14,6 @@ export const NavBar = () => {
     <NavBarWrapper>
       <LeftSideWrap>
         <NavLinkStyled to="/">Home</NavLinkStyled>
-        <NavLinkStyled to="/contacts">Contacts</NavLinkStyled>
       </LeftSideWrap>
       <RightSideWrap>
         {!isLoggedIn && (
@@ -23,7 +22,12 @@ export const NavBar = () => {
             <NavLinkStyled to="/login">Sign In</NavLinkStyled>
           </>
         )}
-        {isLoggedIn && <UserMenu />}
+        {isLoggedIn && (
+          <>
+            <NavLinkStyled to="/contacts">Contacts</NavLinkStyled>
+            <UserMenu />
+          </>
+        )}
       </RightSideWrap>
     </NavBarWrapper>
   );
