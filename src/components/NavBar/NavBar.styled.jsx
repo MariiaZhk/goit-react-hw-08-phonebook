@@ -5,19 +5,19 @@ export const NavBarWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 100px;
+  gap: 50px;
 `;
 export const LeftSideWrap = styled.div`
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 30px;
 `;
 
 export const RightSideWrap = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 20px;
+  gap: 50px;
 `;
 
 export const NavLinkStyled = styled(NavLink)`
