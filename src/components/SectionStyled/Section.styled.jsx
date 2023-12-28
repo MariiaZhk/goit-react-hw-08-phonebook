@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Section = styled.section`
-  width: 40%;
+  width: 35%;
   position: absolute;
   top: 53%;
   left: 50%;
