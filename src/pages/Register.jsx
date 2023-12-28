@@ -9,13 +9,25 @@ import {
   Input,
   LinkText,
 } from './Pages.styled';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export const Register = () => {
   const { register, handleSubmit } = useForm();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const submit = newUser => {
     console.log(newUser);
-    dispatch(registerThunk(newUser));
+    dispatch(registerThunk(newUser))
+      .unwrap()
+      .then(res => {
+        navigate('/contacts');
+        toast.success(`Welcome, ${res.user.name}`);
+      })
+      .catch(error => {
+        toast.error('Something went wrong... Try again, please');
+      });
   };
 
   return (
