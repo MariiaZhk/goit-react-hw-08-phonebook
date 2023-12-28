@@ -10,7 +10,7 @@ export const FormStyled = styled.form`
 `;
 
 export const Button = styled.button`
-  background-color: ${props => props.theme.colors.blue};
+  background-color: ${props => props.theme.colors.darkBlue};
   border-radius: ${props => props.theme.borderRadius.buttonBorder};
   font-size: ${props => props.theme.fontSizes.medium};
   font-weight: ${props => props.theme.fontWeights.semiBold};
@@ -24,7 +24,7 @@ export const Button = styled.button`
 
   &:hover,
   &:active {
-    background-color: ${props => props.theme.colors.hovers};
+    background-color: ${props => props.theme.colors.hoverButton};
     color: ${props => props.theme.colors.white};
   }
 `;

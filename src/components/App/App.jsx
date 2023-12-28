@@ -1,27 +1,61 @@
-import { Form } from '../Form/Form';
-import { ContactsList } from '../ContactsList/ContactsList';
-import { Filter } from '../Filter/Filter';
-import { Section } from '../SectionStyled/Section.styled';
-import { Loader, Subtitle, Title } from './App.styled';
-import { ContactsListWrap } from 'components/ContactsList/ContactsList.styled';
-import { useSelector } from 'react-redux';
-import { getIsLoading, getError } from '../../redux/selectors';
-import { Error } from 'components/Error/Error';
+import { Route, Routes } from 'react-router-dom';
+import { HomePage } from 'pages/Home';
+import { Contacts } from 'pages/Contacts';
+import { SignIn } from 'pages/SignIn';
+import { Register } from 'pages/Register';
+import { Layout } from 'components/Layout/Layout';
+import NotFound from 'pages/NotFound';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { refreshThunk } from '../../redux/auth/authOperations';
+import { PrivateRoute } from 'routesConfig/PrivateRoute';
+import { PublicRoute } from 'routesConfig/PublicRoute';
+import { selectIsRefresh } from '../../redux/auth/authSelectors';
+import { Loader } from 'components/Loader/Loader';
 
 export const App = () => {
-  const isLoading = useSelector(getIsLoading);
-  const error = useSelector(getError);
+  const dispatch = useDispatch();
 
-  return (
-    <Section>
-      <Title>Phonebook</Title>
-      <Form />
-      <ContactsListWrap>
-        <Subtitle>Contacts</Subtitle>
-        <Filter />
-        {isLoading && <Loader>L o a d i n g ...</Loader>}
-        {error ? <Error /> : <ContactsList />}
-      </ContactsListWrap>
-    </Section>
+  useEffect(() => {
+    dispatch(refreshThunk());
+  }, [dispatch]);
+
+  const isRefresh = useSelector(selectIsRefresh);
+
+  return isRefresh ? (
+    <Loader />
+  ) : (
+    <>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route
+            path="/register"
+            element={
+              <PublicRoute>
+                <Register />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <PublicRoute>
+                <SignIn />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/contacts"
+            element={
+              <PrivateRoute>
+                <Contacts />
+              </PrivateRoute>
+            }
+          />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
+    </>
   );
 };

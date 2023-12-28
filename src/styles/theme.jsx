@@ -1,12 +1,13 @@
 export const theme = Object.freeze({
   colors: {
     white: '#ffffff',
-    gray: '#898888',
-    blue: '#0a66c2',
-    hovers: '#21476d',
+    lightBlue: '#7a9bbd',
+    darkBlue: '#25405d',
+    hoverButton: '#3d658f',
+    gray: '#b5b6b8',
   },
   fontSizes: {
-    small: '18px',
+    small: '16px',
     medium: '24px',
     large: '32px',
     extraLarge: '48px',
@@ -15,10 +16,11 @@ export const theme = Object.freeze({
   fontWeights: {
     normal: '400',
     semiBold: '600',
-    extraBold: '800',
+    extraBold: '900',
   },
 
   borderRadius: {
+    formBorder: '8px',
     wrapperBorder: '40px',
     inputBorder: '60px',
     buttonBorder: '100px',

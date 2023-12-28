@@ -4,6 +4,7 @@ import {
   deleteContactThunk,
   fetchContactsThunk,
 } from './operations';
+import { logoutThunk } from '../../redux/auth/authOperations';
 
 const phonebookSlice = createSlice({
   name: 'phonebook',
@@ -60,6 +61,9 @@ const phonebookSlice = createSlice({
       .addCase(addContactThunk.rejected, (state, { payload }) => {
         state.contacts.isLoading = false;
         state.contacts.error = payload;
+      })
+      .addCase(logoutThunk.fulfilled, state => {
+        state.contacts.items = [];
       });
   },
 });

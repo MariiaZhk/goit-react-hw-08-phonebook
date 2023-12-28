@@ -1,9 +1,9 @@
 import { ContactsItem } from 'components/ContactsItem/ContactsItem';
 import { ContactsListStyled, Warning } from './ContactsList.styled';
-import { getFilter, getItems } from '../../redux/selectors';
+import { getFilter, getItems } from '../../redux/phonebook/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { fetchContactsThunk } from '../../redux/operations';
+import { fetchContactsThunk } from '../../redux/phonebook/operations';
 
 export const ContactsList = () => {
   const items = useSelector(getItems);
@@ -27,8 +27,8 @@ export const ContactsList = () => {
         <Warning>There aren't contacts that match your search query...</Warning>
       ) : (
         <ContactsListStyled>
-          {getFilteredData().map(({ id, name, phone }) => (
-            <ContactsItem key={id} id={id} name={name} phone={phone} />
+          {getFilteredData().map(({ id, name, number }) => (
+            <ContactsItem key={id} id={id} name={name} number={number} />
           ))}
         </ContactsListStyled>
       )}

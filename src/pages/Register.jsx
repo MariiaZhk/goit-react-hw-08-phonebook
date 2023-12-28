@@ -1,0 +1,61 @@
+import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { registerThunk } from '../redux/auth/authOperations';
+import {
+  ButtonSign,
+  Form,
+  FormTitle,
+  FormWrap,
+  Input,
+  LinkText,
+} from './Pages.styled';
+
+export const Register = () => {
+  const { register, handleSubmit } = useForm();
+  const dispatch = useDispatch();
+  const submit = newUser => {
+    console.log(newUser);
+    dispatch(registerThunk(newUser));
+  };
+
+  return (
+    <FormWrap>
+      <FormTitle>Sign Up </FormTitle>
+      <div>
+        <Form action="#" method="post" onSubmit={handleSubmit(submit)}>
+          <Input
+            {...register('name')}
+            type="text"
+            name="name"
+            placeholder="Username"
+            required
+            pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          />
+          <Input
+            {...register('email')}
+            type="email"
+            name="email"
+            placeholder="Email"
+            required
+            pattern="[^@\s]+@[^@\s]+"
+          />
+          <Input
+            {...register('password')}
+            type="password"
+            name="password"
+            placeholder="Password"
+            required
+            pattern=".{7,}"
+            title="The password must contain at least 7 characters"
+          />
+          <ButtonSign type="submit">SIGN UP</ButtonSign>
+          <div>
+            <LinkText to="/login">
+              You already have an account? SIGN IN
+            </LinkText>
+          </div>
+        </Form>
+      </div>
+    </FormWrap>
+  );
+};

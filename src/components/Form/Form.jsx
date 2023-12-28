@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { Button, FormStyled, Input, Label } from 'components/Form/Form.styled';
-import { getItems } from '../../redux/selectors';
+import { getItems } from '../../redux/phonebook/selectors';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContactThunk } from '../../redux/operations';
+import { addContactThunk } from '../../redux/phonebook/operations';
 
 export const Form = () => {
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [number, setNumber] = useState('');
 
   const dispatch = useDispatch();
   const items = useSelector(getItems);
@@ -16,8 +16,8 @@ export const Form = () => {
       case 'name':
         setName(value);
         break;
-      case 'phone':
-        setPhone(value);
+      case 'number':
+        setNumber(value);
         break;
 
       default:
@@ -27,7 +27,7 @@ export const Form = () => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    const newContact = { name, phone };
+    const newContact = { name, number };
     if (items.some(item => item.name.toLowerCase() === name.toLowerCase())) {
       alert(`Contact name ${name} already exists!`);
       resetForm();
@@ -39,7 +39,7 @@ export const Form = () => {
 
   const resetForm = () => {
     setName('');
-    setPhone('');
+    setNumber('');
   };
 
   return (
@@ -55,13 +55,13 @@ export const Form = () => {
           onChange={handleChange}
         />
       </Label>
-      <Label htmlFor="phone">
+      <Label htmlFor="number">
         Number
         <Input
           type="tel"
-          name="phone"
-          id="phone"
-          value={phone}
+          name="number"
+          id="number"
+          value={number}
           required
           onChange={handleChange}
         />

@@ -4,15 +4,15 @@ import {
   DeleteItemButton,
 } from './ContactsItem.styled';
 import { useDispatch } from 'react-redux';
-import { deleteContactThunk } from '../../redux/operations';
+import { deleteContactThunk } from '../../redux/phonebook/operations';
 
-export const ContactsItem = ({ name, phone, id }) => {
+export const ContactsItem = ({ name, number, id }) => {
   const dispatch = useDispatch();
 
   return (
     <ContactItem>
       <ContactText>
-        <b>{name}</b> : {phone}
+        <b>{name}</b> : {number}
       </ContactText>
       <DeleteItemButton
         type="button"

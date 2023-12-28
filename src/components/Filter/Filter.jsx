@@ -1,6 +1,6 @@
 import { Input, Label } from 'components/Form/Form.styled';
 import { useDispatch } from 'react-redux';
-import { setFilterAction } from '../../redux/phonebookSlice';
+import { setFilterAction } from '../../redux/phonebook/phonebookSlice';
 
 export const Filter = () => {
   const dispatch = useDispatch();
